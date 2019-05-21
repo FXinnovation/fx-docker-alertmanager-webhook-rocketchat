@@ -1,0 +1,12 @@
+endpoint:
+  scheme: '{{getenv "AWR_ENDPOINT_SCHEME"}}'
+  host: '{{getenv "AWR_ENDPOINT_HOST"}}'
+credentials:
+  name: '{{getenv "AWR_CREDENTIALS_NAME"}}'
+  email: '{{getenv "AWR_CREDENTIALS_EMAIL"}}'
+  password: '{{getenv "AWR_CREDENTIALS_PASSWORD"}}'
+severity_colors:
+  warning: '{{getenv "AWR_SEVERITY_COLORS_WARNING"}}'
+  critical: '{{getenv "AWR_SEVERITY_COLORS_CRITICAL"}}'
+channel:
+  default_channel_name: '{{getenv "AWR_CHANNEL_DEFAULT_CHANNEL_NAME"}}'

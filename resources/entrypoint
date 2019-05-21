@@ -1,0 +1,10 @@
+#!/bin/sh
+set -ex
+
+# Launch confd
+confd -onetime -backend env
+
+# Launch alertmanager-webhook-rocketchat
+/opt/awr/alertmanager-webhook-rocketchat \
+  --config.file='/opt/awr/configuration.yaml' \
+  --listen.address='0.0.0.0:9876'

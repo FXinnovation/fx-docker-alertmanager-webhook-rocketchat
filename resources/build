@@ -1,0 +1,39 @@
+#!/bin/sh
+set -ex
+
+apt-get update
+apt-get install --yes \
+  ca-certificates=${CA_CERTIFICATES_VERSION} \
+  curl
+
+# Install AWR
+useradd -r -d /opt/awr awr
+
+mkdir -p /opt/awr
+mv /alertmanager-webhook-rocketchat /opt/awr
+
+chown -R awr /opt/awr
+
+# Install confd
+curl -sSL \
+  -o /resources/confd_binary \
+  https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64
+
+mkdir -p /opt/confd/bin
+mkdir -p /etc/confd
+mv /resources/confd_binary /opt/confd/bin/confd
+chmod +x /opt/confd/bin/confd
+ln -s /opt/confd/bin/confd /usr/local/bin/confd
+
+mv /resources/confd/conf.d /etc/confd
+mv /resources/confd/templates /etc/confd
+
+# Add entrypoint
+mv /resources/entrypoint /
+
+# Clean
+apt-get remove --purge curl --yes
+apt-get autoremove --purge --yes
+apt-get clean --yes
+
+# CIS Benchmarking
