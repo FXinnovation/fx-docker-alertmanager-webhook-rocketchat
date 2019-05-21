@@ -1,3 +1,3 @@
 fxDockerImage(
-  image: 'alertmanager-webhook-rocketchat'
+  image: 'awr'
 )
