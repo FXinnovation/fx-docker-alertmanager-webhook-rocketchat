@@ -1,6 +1,6 @@
 FROM golang:1.12 as builder
 
-ENV AWR_VERSION="1.0.0"
+ENV AWR_VERSION="1.1.0"
 
 WORKDIR /go/src/github.com/FXinnovation/alertmanager-webhook-rocketchat
 
@@ -23,7 +23,7 @@ ENV AWR_ENDPOINT_SCHEME="https" \
     AWR_SEVERITY_COLORS_CRITICAL="#ff0000" \
     AWR_CHANNEL_DEFAULT_CHANNEL_NAME="alerts-room" \
     CA_CERTIFICATES_VERSION="20180409" \
-    AWR_VERSION="1.0.0" \
+    AWR_VERSION="1.1.0" \
     CONFD_VERSION="0.16.0"
 
 COPY --from=builder /go/src/github.com/FXinnovation/alertmanager-webhook-rocketchat/alertmanager-webhook-rocketchat /alertmanager-webhook-rocketchat
